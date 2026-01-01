@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tasks to be Completed</title>
+    </head>
+
+    <body>
+        <h1>Your Tasks</h1>
+        <a href="/add">Add New Task</a>
+        <ul>
+            {% for task in tasks %}
+
+            <li>
+                <strong>{{task[1] }} </strong>— Priority: {{ task[5] }}
+
+            </li>
+            {% endfor %}
+
+        </ul>
+    </body>
+</html>
