@@ -9,15 +9,14 @@
         <a href="/add">Add New Task</a>
         <ul>
             {% for task in tasks %}
-
             <li>
-                <strong>{{task[1] }} </strong>— Priority: {{ task[5] }}
-                {% if task[6] == 0}
+                <strong>{{task[1]}} </strong>— Priority: {{ task[5] }}
+                {% if task[6] == 0 %}
                 <!--Only show compledted button if task has not been completed-->
-                <a href = "/complete/{{task[0]}}">Completed</a>
+                <a href = "/complete/{{task[0]}}">Complete</a>
                 {% else %}
                 <span style = "color: green; ">Completed</span>
-                {% elseif %}
+                {% endif %}
                 <!--Delete button will always be available-->
                 <a href = "delete/{{task[0]}}" style = "color: red; margin-left: 10px;">Delete</a>
 
