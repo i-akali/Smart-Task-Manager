@@ -11,11 +11,11 @@
             {% for task in tasks %}
             <li>
                 <strong>{{task[1]}} </strong>— Priority: {{ task[5] }}
-                {% if task[6] == 0 %}
+                {% if task[6] == 1 %}
                 <!--Only show compledted button if task has not been completed-->
-                <a href = "/complete/{{task[0]}}">Complete</a>
-                {% else %}
                 <span style = "color: green; ">Completed</span>
+                {% else %}
+                <a href = "/complete/{{task[0]}}">Complete</a>
                 {% endif %}
                 <!--Delete button will always be available-->
                 <a href = "delete/{{task[0]}}" style = "color: red; margin-left: 10px;">Delete</a>
