@@ -2,7 +2,7 @@
 #Helps in generating the Flask app
 from flask import Flask, render_template, request, redirect
 
-from models import create_tasks_tables, get_all_tasks, add_task
+from models import create_tasks_tables, get_all_tasks, add_task, mark_task_completed, delete_task   
 
 create_tasks_tables()  # Ensure the database and tables are created at startup
 app = Flask(__name__)
@@ -35,6 +35,16 @@ def add_task_submit():
     add_task(title, description, due_date, category, priority)
 
     #Return user to home page
+    return redirect("/tasks")
+
+@app.route("/complete/<int:task_id>", methods=["POST"])
+def complete_task(task_id):
+    mark_task_completed(task_id)
+    return redirect("/tasks")
+
+@app.route("/delete/<int:task_id>", methods=["POST"])
+def delete_task_route(task_id):
+    delete_task(task_id)
     return redirect("/tasks")
 
 if __name__ == '__main__':
