@@ -86,6 +86,21 @@ def update_task(task_id, title, description, due_date, category, priority):
         WHERE id = ?
     ''', (title, description, due_date, category, priority, task_id))
 
+def get_all_completed_tasks():
+    connection = get_db_connection()
+    c = connection.cursor()
+
+    #Select tasks which are completed (Marked with 1)
+
+    c.execte('SELECT * FROM tasks WHERE completed = 1 ORDER BY priority DESC')
+    tasks = c.fetchall() #Fetches all completed tasks
+
+    connection.close() # Closes connection
+
+    return tasks # Returns completed tasks.
+
+
+
     connection.commit() #Saves the changes to the database
     connection.close() #Closes the connection to free up resources
 
