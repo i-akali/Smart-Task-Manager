@@ -16,7 +16,7 @@ def create_tasks_tables():
             description TEXT,
             due_date TEXT,
             category TEXT,
-            priority REAL
+            priority REAL,
             completed INTEGER DEFAULT 0 
         )
     ''')
@@ -92,7 +92,7 @@ def get_all_completed_tasks():
 
     #Select tasks which are completed (Marked with 1)
 
-    c.execte('SELECT * FROM tasks WHERE completed = 1 ORDER BY priority DESC')
+    c.execute('SELECT * FROM tasks WHERE completed = 1 ORDER BY priority DESC')
     tasks = c.fetchall() #Fetches all completed tasks
 
     connection.close() # Closes connection

@@ -5,12 +5,12 @@
     </head>
     <body>
         <h1>Completed Tasks </h1>
-        <a href="/tasks" >Back to Active Tasks</a>
+        <a href="/tasks">Back to Active Tasks</a>
         <br><br>
         <ul>
             {% for task in tasks %}
             <li>
-                <strong>{{task[1]}} </strong>— Priority: {{ task[5] }}
+                <strong>{{task[1]}} </strong> — Priority: {{ task[5] }}
                 <span style = "color: green; margin-left: 10px;">Completed</span>
             </li>
             {% endfor %}
