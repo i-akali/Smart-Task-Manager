@@ -53,11 +53,7 @@ def mark_task_completed(task_id):
     cursor = connection.cursor()
 
     #Updates the task to mark it as completed
-    cursor.execute('''
-        UPDATE tasks
-        SET completed = 1
-        WHERE id = ?
-    ''', (task_id,))
+    cursor.execute('UPDATE tasks SET completed = 1 WHERE id = ?', (task_id,))
 
     connection.commit() #Saves the changes to the database
     connection.close() #Closes the connection to free up resources

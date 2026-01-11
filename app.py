@@ -37,12 +37,12 @@ def add_task_submit():
     #Return user to home page
     return redirect("/tasks")
 
-@app.route("/complete/<int:task_id>", methods=["POST"])
+@app.route("/complete/<int:task_id>")
 def complete_task(task_id):
     mark_task_completed(task_id)
     return redirect("/tasks")
 
-@app.route("/delete/<int:task_id>", methods=["POST"])
+@app.route("/delete/<int:task_id>")
 def delete_task_route(task_id):
     delete_task(task_id)
     return redirect("/tasks")
