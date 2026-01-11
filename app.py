@@ -2,7 +2,7 @@
 #Helps in generating the Flask app
 from flask import Flask, render_template, request, redirect
 
-from models import create_tasks_tables, get_all_tasks, add_task, mark_task_completed, delete_task, get_all_completed_tasks   
+from models import create_tasks_tables, get_all_tasks, add_task, mark_task_completed, delete_task, get_all_completed_tasks, update_task , get_task
 
 create_tasks_tables()  # Ensure the database and tables are created at startup
 app = Flask(__name__)
@@ -51,6 +51,25 @@ def delete_task_route(task_id):
 def completed_tasks_page():
     completed_tasks= get_all_completed_tasks() #Fetches all completed tasks
     return render_template("completed_tasks.html", tasks=completed_tasks)
+
+@app.route("/edit/<int:task_id>")
+def edit_task(task_id):
+    task = get_task(task_id)
+    return render_template("edit_task.html", task=task)
+
+@app.route("/edit/<int:task_id>", methods = ["POST"])
+def save_task(task_id): #Creates a form to update task specifics
+    title = request.form["title"]
+    description = request.form["description"]
+    due_date = request.form["due_date"]
+    category = request.form["category"]
+    priority = request.form["priority"]
+
+    #Updates task with new information
+    update_task(task_id, title, description, due_date, category, priority)
+
+    return redirect("/tasks") #Redirects to home page
+
 
 if __name__ == '__main__':
     app.run(debug=True) 

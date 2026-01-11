@@ -82,6 +82,9 @@ def update_task(task_id, title, description, due_date, category, priority):
         WHERE id = ?
     ''', (title, description, due_date, category, priority, task_id))
 
+    connection.commit() #Saves the changes to the database
+    connection.close() #Closes the connection to free up resources
+
 def get_all_completed_tasks():
     connection = get_db_connection()
     c = connection.cursor()
@@ -92,12 +95,23 @@ def get_all_completed_tasks():
     tasks = c.fetchall() #Fetches all completed tasks
 
     connection.close() # Closes connection
-
     return tasks # Returns completed tasks.
 
+# Accessor used to get task
+def get_task(task_id):
+    connection = get_db_connection()
+    c = connection.cursor()
+
+    c.execute("SELECT * FROM tasks WHERE id = ?", (task_id,))
+    task = c.fetchone()
+
+    connection.close()
+    return task
+    
+
+    
 
 
-    connection.commit() #Saves the changes to the database
-    connection.close() #Closes the connection to free up resources
+
 
     
