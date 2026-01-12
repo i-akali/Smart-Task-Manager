@@ -13,8 +13,8 @@ def home():
 
 @app.route("/tasks")
 def tasks_page():
-    tasks = get_all_tasks() #Fetches all taks
-    return render_template('tasks.html', tasks=tasks) #Renders the tasks.html template with the tasks data
+    tasks = get_all_tasks() #Fetches all tasks
+    return render_template('tasks.html', tasks=tasks, title = "Your tasks") #Renders the tasks.html template with the tasks data
 
 
 @app.route("/add", methods =["GET"])
@@ -50,12 +50,12 @@ def delete_task_route(task_id):
 @app.route("/completed")
 def completed_tasks_page():
     completed_tasks= get_all_completed_tasks() #Fetches all completed tasks
-    return render_template("completed_tasks.html", tasks=completed_tasks)
+    return render_template("completed_tasks.html", tasks=completed_tasks, title = "Completed tasks")
 
 @app.route("/edit/<int:task_id>")
 def edit_task(task_id):
     task = get_task(task_id)
-    return render_template("edit_task.html", task=task)
+    return render_template("edit_task.html", task=task, title = "Edit Task")
 
 @app.route("/edit/<int:task_id>", methods = ["POST"])
 def save_task(task_id): #Creates a form to update task specifics
