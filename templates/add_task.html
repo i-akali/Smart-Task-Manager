@@ -1,28 +1,38 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Add Tasks</title>
-    </head>
-    <body>
-        <h1>Add a new Task</h1>
-         <form action="/add" method="POST">
-        <label>Title:</label><br>
-        <input type="text" name="title" required><br><br>
+{% extends "base.html" %}
 
-        <label>Description:</label><br>
-        <textarea name="description"></textarea><br><br>
+{% block content %}
+<h1 class="mb-4">Add a New Task</h1>
 
-        <label>Due Date:</label><br>
-        <input type="date" name="due_date"><br><br>
+<form action="/add" method="POST" class="card p-4 shadow-sm">
 
-        <label>Category:</label><br>
-        <input type="text" name="category"><br><br>
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" required>
+    </div>
 
-        <label>Priority (0.0 to 1.0):</label><br>
-        <input type="number" name="priority" step="0.1" min="0" max="1" required><br><br>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control"></textarea>
+    </div>
 
-        <button type="submit">Add Task</button>
-    </form>
+    <div class="mb-3">
+        <label class="form-label">Due Date</label>
+        <input type="date" name="due_date" class="form-control">
+    </div>
 
-    </body>
-</html>
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <input type="text" name="category" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Priority (0.0 to 1.0)</label>
+        <input type="number" name="priority" step="0.1" min="0" max="1" class="form-control" required>
+    </div>
+
+    <button class="btn btn-primary">Add Task</button>
+</form>
+
+<a href="/tasks" class="btn btn-outline-secondary btn-sm mt-3">Back to Tasks</a>
+
+{% endblock %}

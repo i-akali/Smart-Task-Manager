@@ -20,7 +20,7 @@ def tasks_page():
 @app.route("/add", methods =["GET"])
 def add_page():
     #Shows the add page to user
-    return render_template("add_task.html")
+    return render_template("add_task.html", title = "Add Task")
 
 @app.route("/add", methods=["POST"])
 def add_task_submit():
